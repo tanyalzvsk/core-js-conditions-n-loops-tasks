@@ -134,7 +134,6 @@ function convertToRomanNumerals(/* num */) {
 function convertNumberToString(/* numberStr */) {
   throw new Error('Not implemented');
 }
-
 /**
  * Determines whether a string is a palindrome.
  * In this task, the use of methods of the String and Array classes is not allowed.
@@ -198,8 +197,18 @@ function getIndexOf(str, letter) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let check = Math.abs(num);
+
+  while (check > 0) {
+    const current = check % 10;
+    if (current === digit) {
+      return true;
+    }
+    check = Math.floor(check / 10);
+  }
+
+  return false;
 }
 
 /**
@@ -215,8 +224,25 @@ function isContainNumber(/* num, digit */) {
  *  [2, 3, 9, 5] => 2       => 2 + 3 === 5 then balance element is 9 and its index = 2
  *  [1, 2, 3, 4, 5] => -1   => no balance element
  */
-function getBalanceIndex(/* arr */) {
-  throw new Error('Not implemented');
+function getBalanceIndex(arr) {
+  for (let i = 0; i < arr.length; i += 1) {
+    let left = 0;
+    let right = 0;
+
+    for (let j = 0; j < i; j += 1) {
+      left += arr[j];
+    }
+
+    for (let k = i + 1; k < arr.length; k += 1) {
+      right += arr[k];
+    }
+
+    if (left === right) {
+      return i;
+    }
+  }
+
+  return -1;
 }
 
 /**
